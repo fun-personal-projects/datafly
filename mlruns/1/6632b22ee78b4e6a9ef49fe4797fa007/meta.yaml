@@ -1,0 +1,15 @@
+artifact_uri: file:///home/eragon/Documents/github/datafly/mlruns/1/6632b22ee78b4e6a9ef49fe4797fa007/artifacts
+end_time: 1602593031807
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 6632b22ee78b4e6a9ef49fe4797fa007
+run_uuid: 6632b22ee78b4e6a9ef49fe4797fa007
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1602593031738
+status: 3
+tags: []
+user_id: eragon

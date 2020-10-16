@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 import os
-
+import random
 # Functions for each type of thing
 
 def fix_range(x):
@@ -37,9 +37,6 @@ def age(data, col):
     binned1 = multipleFix( [ (min_val, round10(x)) for x in col ] )
     binned2 = multipleFix( [ (min_val, max(round10(x), middle_val)) for x in col ] )
     binned3 = multipleFix( [ (min_val, max_val) for x in col ] )
-    
-
-    
     # binned1 = multipleFix([(int(round(x,-1)), int(round(x,-1))+10) for x in col])
     # # binned1 = multipleFix(pd.cut(x = col , bins =bins))
     # binned2 = multipleFix([(0, quartile_val) for _ in range(len(binned1))])
@@ -69,14 +66,18 @@ def zip(data, col):
 def ret_val_between(ran):
     return str(np.random.randint(ran[0], ran[1]))
 
+def diseases():
+    list_dis =["Cancer", "AIDS", "Autism", "Alzheimer's disease", "Anorexia","Heart disease"]
+    return random.choice(list_dis)
+
 # temp = pd.DataFrame({'a':[23, 24, 50, 67]})
 # print(age(temp, 'a'))
 
 # Generating the dataset
 # Set parameters
 
-row_names = ["id","age","father_age","zip_code", "zip_code2"]
-types = ["","age", "age", "zip", "zip"]
+row_names = ["id","age","father_age","zip_code", "zip_code2", "disease"]
+types = ["","age", "age", "zip", "zip","dis"]
 no_rows = 20
 ranges = ["", [0, 40], [60,90], [10000, 70000], [10000, 70000]]
 
@@ -85,7 +86,7 @@ main_db.write(",".join(row_names) + "\n")
 
 # Create
 for i in range(no_rows):
-    main_db.write(f"{str(i+1)}, {ret_val_between(ranges[1])},{ret_val_between(ranges[2])},{ret_val_between(ranges[3])}, {ret_val_between(ranges[4])}\n")
+    main_db.write(f"{str(i+1)}, {ret_val_between(ranges[1])},{ret_val_between(ranges[2])},{ret_val_between(ranges[3])}, {ret_val_between(ranges[4])}, {diseases()}\n")
     main_db.flush()
     
 main_db.close()
@@ -103,3 +104,4 @@ for i in range(len(types)):
     elif types[i] == "zip":
         with open(f"example/gen_{cols[i]}_generalization.csv", "w+") as f:
             f.write(zip(data, cols[i]).strip())
+     

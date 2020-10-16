@@ -32,15 +32,16 @@ def main_ret(data):
     # data = pd.read_csv(data)
     print(data.head())
 
-    f1 = setup(data, target='disease', session_id=123, log_experiment=True,
-            experiment_name='test', html=False, silent=True)
+    f1 = setup(data, target='disease', session_id=123, log_experiment=False,
+               experiment_name='test', html=False, silent=True)
+    # compare_models(fold=5) 
 
     print("Finding best model for this ")
-    m1 = create_model('llar')
+    m1 = create_model('lasso') #lasso
 
-    m2 = create_model('br')
+    m2 = create_model('en') #elastic
 
-    m3 = create_model('tr')
+    m3 = create_model('lightgbm')
 
     # Tuning
     print("Training the models")
@@ -50,5 +51,5 @@ def main_ret(data):
     print("Best model")
     m1_t = tune_model(m1)
 
-#main_ret(pd.read_csv("./example/db_100.csv"))
-#main_ret(pd.read_csv("./example/db_100_3_anon.csv"))
+# main_ret(pd.read_csv("./example/db_100.csv"))
+# main_ret(pd.read_csv("./example/db_100_3_anon.csv"))

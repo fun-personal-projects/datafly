@@ -1,9 +1,0 @@
-channels:
-- defaults
-- conda-forge
-dependencies:
-- python=3.8.5
-- pip
-- pip:
-  - pycaret==2.1.2
-name: test-env
